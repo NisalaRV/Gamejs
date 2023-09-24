@@ -1,0 +1,31 @@
+* {
+    margin: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mobile {
+    display: none;
+}
+
+td {
+    text-align: center;
+    background-color: gray;
+    width: 65px;
+    height: 65px;
+}
+
+.noPieceHere {
+    background-color: cadetblue;
+}
