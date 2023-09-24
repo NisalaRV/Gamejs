@@ -29,3 +29,26 @@ td {
 .noPieceHere {
     background-color: cadetblue;
 }
+
+.blackPiece {
+    width: 20px;
+    height: 20px;
+    padding: 12px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 50px;
+}
+
+.redPiece {
+    width:20px;
+    height:20px;
+    padding: 12px;
+    background-color: red;
+    border: 1px solid white;
+    border-radius: 50px;
+}
+
+span {
+    display: inline-block;
+}
+
