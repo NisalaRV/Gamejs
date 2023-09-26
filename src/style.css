@@ -52,3 +52,40 @@ span {
     display: inline-block;
 }
 
+p {
+    display: inline-block;
+}
+
+.desktop {
+    margin: 0;
+    width: 100%;
+}
+
+#divider {
+    font-size: 90px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.king.redPiece {
+    background-color: orange;
+}
+
+.king.blackPiece {
+    background-color: purple;
+}
+
+
+.red-turn-text {
+    text-align: center;
+    color: black;
+    font-family: "open sans", serif;
+    font-size: 55px;
+}
+
+.black-turn-text {
+    text-align: center;
+    font-family: "open sans", serif;
+    font-size: 55px;
+    color: lightgray;
+}
