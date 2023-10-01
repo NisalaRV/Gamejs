@@ -9,12 +9,36 @@ const board = [
     20, null, 21, null, 22, null, 23, null
 ]
 
-// --
+// ----DOM references----------
+const cells = document.querySelectorAll("td");
+const redTurnText = document.querySelectorAll(".red-turn-text");
+const blackTurnText = document.querySelectorAll(".black-turn-text");
+const divider = document.querySelector("#divider")
 let redsPieces = document.querySelectorAll("p");
 let blacksPieces = document.querySelectorAll("span")
 let playerPieces;
 
+// -------player properties------
+
+let redScore = 12;
+let blackScore = 12;
 let turn = true;
+
+let selectedPiece = {
+    pieceId: -1,
+    indexOfBoardPiece: -1,
+    isKing: false,
+    seventhSpace: false,
+    ninthSpace: false,
+    fourteenthSpace: false,
+    eighteenthSpace: false,
+    minusSeventhSpace: false,
+    minusNinthSpace: false,
+    minusFourteenthSpace: false,
+    minusEighteenthSpace: false
+}
+
+// -----evenetListerners-----
 
 function givePiecesEventListeners() {
     if (turn) {
@@ -27,21 +51,50 @@ function givePiecesEventListeners() {
         }
     }
 }
-
 givePiecesEventListeners();
 
-function getPlayerPieces() {
-    if (turn) {
-        playerPieces = redsPieces;
-    } else {
-        playerPieces = blacksPieces;
+    function getPlayerPieces() {
+        if (turn) {
+            playerPieces = redsPieces;
+        } else {
+            playerPieces = blacksPieces;
+        }
+        resetBorders();
+        removeCellOnclick();
     }
-    resetBorders();
+
+    function resetBorders() {
+        for (let i = 0; i < playerPieces.length; i++) {
+            playerPieces[i].style.border = "1px solid white";
+        }
+        resetSelectedPieceProperties();
+        getSelectedPiece();
+    }
+
+    function removeCellOnclick() {
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].removeAttribute("onclick");
+        }
 }
 
-function resetBorders() {
-    for (let i = 0; i < playerPieces.length; i++) {
-        playerPieces[i].style.border = "1px solid white";
-    }
+function resetSelectedPieceProperties() {
+    selectedPiece.pieceId = -1;
+    selectedPiece.pieceId = -1;
+    selectedPiece.isKing = false;
+    selectedPiece.seventhSpace = false;
+    selectedPiece.ninthSpace = false;
+    selectedPiece.fourteenthSpace = false;
+    selectedPiece.eighteenthSpace = false;
+    selectedPiece.minusSeventhSpace = false;
+    selectedPiece.minusNinthSpace = false;
+    selectedPiece.minusFourteenthSpace = false;
+    selectedPiece.minusEighteenthSpace = false;
 }
+function getSelectedPiece() {
+    selectedPiece.pieceId = parseInt(event.target.id);
+    selectedPiece.indexOfBoardPiece = findPiece(selectedPiece.pieceId);
+}
+
+
+
 
