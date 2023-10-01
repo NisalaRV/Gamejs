@@ -93,8 +93,37 @@ function resetSelectedPieceProperties() {
 function getSelectedPiece() {
     selectedPiece.pieceId = parseInt(event.target.id);
     selectedPiece.indexOfBoardPiece = findPiece(selectedPiece.pieceId);
+    isPieceKing();
 }
 
+
+function isPieceKing() {
+    if (document.getElementById(selectedPiece.pieceId).classList.contains("king")) {
+        selectedPiece.isKing = true;
+    } else {
+        selectedPiece.isKing = false;
+    }
+    getAvailableSpaces();
+}
+
+function getAvailableSpaces() {
+    if (board[selectedPiece.indexOfBoardPiece + 7] === null &&
+        cells[selectedPiece.indexOfBoardPiece + 7].classList.contains("noPieceHere") !== true) {
+        selectedPiece.seventhSpace = true;
+    }
+    if (board[selectedPiece.indexOfBoardPiece + 9] === null &&
+        cells[selectedPiece.indexOfBoardPiece + 9].classList.contains("noPieceHere") !== true) {
+        selectedPiece.ninthSpace = true;
+    }
+    if (board[selectedPiece.indexOfBoardPiece - 7] === null &&
+        cells[selectedPiece.indexOfBoardPiece - 7].classList.contains("noPieceHere") !== true) {
+        selectedPiece.minusSeventhSpace = true;
+    }
+    if (board[selectedPiece.indexOfBoardPiece - 9] === null &&
+        cells[selectedPiece.indexOfBoardPiece - 9].classList.contains("noPieceHere") !== true) {
+        selectedPiece.minusNinthSpace = true;
+    }
+}
 
 
 

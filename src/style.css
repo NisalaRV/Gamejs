@@ -82,6 +82,7 @@ span {
     font-family: "open sans", serif;
     font-size: 55px;
     margin-right: 500px;
+    margin-top: -600px;
 }
 
 .black-turn-text {
@@ -89,4 +90,5 @@ span {
     font-family: "open sans", serif;
     font-size: 55px;
     color: lightgray;
+    margin-top: -184px;
 }
