@@ -286,4 +286,18 @@ function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
     }
     resetSelectedPieceProperties();
     removeCellOnclick();
+    removeEventListeners();
 }
+
+function removeEventListeners() {
+    if (turn) {
+        for (let i = 0; i < redsPieces.length; i++) {
+            redsPieces[i].removeEventListener("click", getPlayerPieces);
+        }
+    } else {
+        for (let i = 0; i < blacksPieces.length; i++) {
+            blacksPieces[i].removeEventListener("click", getPlayerPieces);
+        }
+    }
+}
+
