@@ -30,6 +30,22 @@ td {
     background-color: cadetblue;
 }
 
+.redPiece {
+    width:20px;
+    height:20px;
+    padding: 12px;
+    background-color: red;
+    border: 1px solid white;
+    border-radius: 50px;
+}
+.red-turn-text {
+    text-align: center;
+    color: black;
+    font-family: "open sans", serif;
+    font-size: 55px;
+    margin-right: 500px;
+    margin-top: -600px;
+}
 .blackPiece {
     width: 20px;
     height: 20px;
@@ -39,14 +55,14 @@ td {
     border-radius: 50px;
 }
 
-.redPiece {
-    width:20px;
-    height:20px;
-    padding: 12px;
-    background-color: red;
-    border: 1px solid white;
-    border-radius: 50px;
+.black-turn-text {
+    text-align: center;
+    font-family: "open sans", serif;
+    font-size: 55px;
+    color: lightgray;
+    margin-top: -184px;
 }
+
 
 span {
     display: inline-block;
@@ -76,19 +92,3 @@ span {
 }
 
 
-.red-turn-text {
-    text-align: center;
-    color: black;
-    font-family: "open sans", serif;
-    font-size: 55px;
-    margin-right: 500px;
-    margin-top: -600px;
-}
-
-.black-turn-text {
-    text-align: center;
-    font-family: "open sans", serif;
-    font-size: 55px;
-    color: lightgray;
-    margin-top: -184px;
-}

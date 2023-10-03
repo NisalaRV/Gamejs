@@ -8,21 +8,27 @@ const board = [
     null, 16, null, 17, null, 18, null, 19,
     20, null, 21, null, 22, null, 23, null
 ]
+let findPiece = function (pieceId) {
+    let parsed = parseInt(pieceId);
+    return board.indexOf(parsed);
+};
+
+
 
 // ----DOM references----------
 const cells = document.querySelectorAll("td");
+let redsPieces = document.querySelectorAll("p");
+let blacksPieces = document.querySelectorAll("span")
 const redTurnText = document.querySelectorAll(".red-turn-text");
 const blackTurnText = document.querySelectorAll(".black-turn-text");
 const divider = document.querySelector("#divider")
-let redsPieces = document.querySelectorAll("p");
-let blacksPieces = document.querySelectorAll("span")
-let playerPieces;
+
 
 // -------player properties------
-
+let turn = true;
 let redScore = 12;
 let blackScore = 12;
-let turn = true;
+let playerPieces;
 
 let selectedPiece = {
     pieceId: -1,
@@ -51,9 +57,9 @@ function givePiecesEventListeners() {
         }
     }
 }
-givePiecesEventListeners();
 
-    function getPlayerPieces() {
+
+function getPlayerPieces() {
         if (turn) {
             playerPieces = redsPieces;
         } else {
@@ -62,20 +68,21 @@ givePiecesEventListeners();
         resetBorders();
         removeCellOnclick();
     }
+function removeCellOnclick() {
+    for (let i = 0; i < cells.length; i++) {
+        cells[i].removeAttribute("onclick");
+    }
+}
 
-    function resetBorders() {
+function resetBorders() {
         for (let i = 0; i < playerPieces.length; i++) {
             playerPieces[i].style.border = "1px solid white";
         }
         resetSelectedPieceProperties();
         getSelectedPiece();
-    }
-
-    function removeCellOnclick() {
-        for (let i = 0; i < cells.length; i++) {
-            cells[i].removeAttribute("onclick");
-        }
 }
+
+
 
 function resetSelectedPieceProperties() {
     selectedPiece.pieceId = -1;
@@ -227,4 +234,25 @@ function giveCellsClick() {
     }
 }
 
+function makeMove(number) {
+    document.getElementById(selectedPiece.pieceId).remove();
+    cells[selectedPiece.indexOfBoardPiece].innerHTML = "";
+    if (turn) {
+        if (selectedPiece.isKing) {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="redPiece king" id="${selectedPiece.pieceId}"></p>`;
+            redsPieces = document.querySelectorAll("p");
+        } else {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<p class="redPiece" id="${selectedPiece.pieceId}"></p>`;
+            redsPieces = document.querySelectorAll("p");
+        }
+    } else {
+        if (selectedPiece.isKing) {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="blackPiece king" id="${selectedPiece.pieceId}"></span>`;
+            blacksPieces = document.querySelectorAll("span");
+        } else {
+            cells[selectedPiece.indexOfBoardPiece + number].innerHTML = `<span class="blackPiece" id="${selectedPiece.pieceId}"></span>`;
+            blacksPieces = document.querySelectorAll("span");
+        }
+    }
 
+}
