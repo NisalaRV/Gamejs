@@ -65,9 +65,10 @@ function getPlayerPieces() {
         } else {
             playerPieces = blacksPieces;
         }
-        resetBorders();
         removeCellOnclick();
+        resetBorders();
     }
+
 function removeCellOnclick() {
     for (let i = 0; i < cells.length; i++) {
         cells[i].removeAttribute("onclick");
@@ -181,7 +182,7 @@ function checkAvailableJumpSpaces() {
 }
 function checkPieceConditions() {
     if (selectedPiece.isKing) {
-
+        givePieceBorder();
     } else {
         if (turn) {
             selectedPiece.minusSeventhSpace = false;
@@ -254,5 +255,35 @@ function makeMove(number) {
             blacksPieces = document.querySelectorAll("span");
         }
     }
+    let indexOfPiece = selectedPiece.indexOfBoardPiece
+    if (number === 14 || number === -14 || number === 18 || number === -18) {
+        changeData(indexOfPiece, indexOfPiece + number, indexOfPiece + number / 2);
+    } else {
+        changeData(indexOfPiece, indexOfPiece + number);
+    }
+}
 
+
+function changeData(indexOfBoardPiece, modifiedIndex, removePiece) {
+    board[indexOfBoardPiece] = null;
+    board[modifiedIndex] = parseInt(selectedPiece.pieceId);
+    if (turn && selectedPiece.pieceId < 12 && modifiedIndex >= 57) {
+        document.getElementById(selectedPiece.pieceId).classList.add("king")
+    }
+    if (turn === false && selectedPiece.pieceId >= 12 && modifiedIndex <= 7) {
+        document.getElementById(selectedPiece.pieceId).classList.add("king");
+    }
+    if (removePiece) {
+        board[removePiece] = null;
+        if (turn && selectedPiece.pieceId < 12) {
+            cells[removePiece].innerHTML = "";
+            blackScore--
+        }
+        if (turn === false && selectedPiece.pieceId >= 12) {
+            cells[removePiece].innerHTML = "";
+            redScore--
+        }
+    }
+    resetSelectedPieceProperties();
+    removeCellOnclick();
 }
