@@ -299,5 +299,25 @@ function removeEventListeners() {
             blacksPieces[i].removeEventListener("click", getPlayerPieces);
         }
     }
+    checkForWin();
 }
+
+function checkForWin() {
+    if (blackScore === 0) {
+        divider.style.display = "none";
+        for (let i = 0; i < redTurnText.length; i++) {
+            redTurnText[i].style.color = "black";
+            blackTurnText[i].style.display = "none";
+            redTurnText[i].textContent = "RED WINS!";
+        }
+    } else if (redScore === 0) {
+        divider.style.display = "none";
+        for (let i = 0; i < blackTurnText.length; i++) {
+            blackTurnText[i].style.color = "black";
+            redTurnText[i].style.display = "none";
+            blackTurnText[i].textContent = "BLACK WINS!";
+        }
+    }
+}
+
 
