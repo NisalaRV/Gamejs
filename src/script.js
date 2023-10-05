@@ -318,6 +318,24 @@ function checkForWin() {
             blackTurnText[i].textContent = "BLACK WINS!";
         }
     }
+    changePlayer();
+}
+function changePlayer() {
+    if (turn) {
+        turn = false;
+        for (let i = 0; i < redTurnText.length; i++) {
+            redTurnText[i].style.color = "lightGrey";
+            blackTurnText[i].style.color = "black";
+        }
+    } else {
+        turn = true;
+        for (let i = 0; i < blackTurnText.length; i++) {
+            blackTurnText[i].style.color = "lightGrey";
+            redTurnText[i].style.color = "black";
+        }
+    }
+    givePiecesEventListeners();
 }
 
+givePiecesEventListeners();
 
